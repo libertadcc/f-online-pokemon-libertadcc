@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PokeList from './List/PokeList';
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   constructor(props){
@@ -25,7 +25,6 @@ class App extends Component {
           fetch(data.results[i].url)
           .then(res => res.json())
           .then(onePokemon => {
-            console.log(onePokemon);
             this.setState((prevState, props) => {
               return {
                 pokedex: [
@@ -44,11 +43,11 @@ class App extends Component {
     const {pokedex} = this.state;
     return(
       <div className="page">
+        <h1 className="page__title">Pokédex</h1>
         <ul className="page__pokedex">
           {pokedex.map(item => {
             return(
               <PokeList item={item} />
-              
             );
           })}
         </ul>

@@ -1,0 +1,40 @@
+@import './scss/variables';
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page {
+  padding: 10px 30px;
+  text-align: center;
+  background-color: $coloryellow;
+}
+
+.page__title {
+  margin: 0;
+  padding: 30px;
+  font-size: 40px;
+}
+
+.page__pokedex {
+  display: flex;
+  flex-direction: column;
+  padding: 0;  
+  max-width: 350px;
+  margin: 0 auto;
+  @media all and (min-width: $bp-tablet) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: auto;
+    grid-gap: 15px;
+    max-width: none;
+  }
+  
+  @media all and (min-width: $bp-desktop) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 25px;
+    max-width: 1200px;
+  }
+}

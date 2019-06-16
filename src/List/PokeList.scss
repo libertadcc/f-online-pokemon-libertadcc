@@ -1,0 +1,12 @@
+@import '../scss/variables';
+
+.card {
+  list-style: none;
+  padding: 0;
+  background: rgb(223, 223, 223);
+  margin: 10px 0;
+
+  @media all and (min-width: $bp-tablet) {
+    margin: 0;
+  }
+}
