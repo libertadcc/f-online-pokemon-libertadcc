@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PokeList from './List/PokeList';
 import './App.css';
 
 class App extends Component {
@@ -42,24 +43,12 @@ class App extends Component {
   render(){
     const {pokedex} = this.state;
     return(
-      <div>
-        <ul>
+      <div className="page">
+        <ul className="page__pokedex">
           {pokedex.map(item => {
             return(
-              <div key={item.id}>
-                <img src={`${item.sprites.front_default}`} />
-                <p>ID / {item.id}</p>
-                <li>{item.name}</li>
-                <ul>
-                  {item.abilities.map(obj =>{
-                    return(
-                      <div>
-                        <li>{obj.ability.name}</li>
-                      </div>
-                    )
-                  })}
-                </ul>
-              </div>
+              <PokeList item={item} />
+              
             );
           })}
         </ul>
