@@ -5,8 +5,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state= {
-      list: [],
-      nuevo: []
+      pokedex: []
     }
     this.getPokemon = this.getPokemon.bind(this);
   }
@@ -16,35 +15,50 @@ class App extends Component {
   }
 
   getPokemon(){
-    fetch('http://pokeapi.salestock.net/api/v2/pokemon/?limit=25')
-      .then(res => res.json())
+    const ENDPOINT = 'https://pokeapi.co/api/v2/pokemon?limit=25';
+    return (
+      fetch(ENDPOINT)
+      .then(response => response.json())
       .then(data => {
-        const newData = data.results.map((item, index) => {
-          return {...item, id: index + 1}
-        })
-        this.setState({
-          list: newData
-        })
-        return fetch('http://pokeapi.salestock.net/api/v2/pokemon/?limit=25')
-        })
-          .then(response => response.json())
-          .then(datos => {
-            this.setState({
-              nuevo: datos.results
+        for(let i = 0; i < data.results.length; i++){
+          fetch(data.results[i].url)
+          .then(res => res.json())
+          .then(onePokemon => {
+            console.log(onePokemon);
+            this.setState((prevState, props) => {
+              return {
+                pokedex: [
+                  ...prevState.pokedex,
+                  onePokemon
+                ]
+              }
             })
-            console.log(datos.results)})
+          })
+        }
+      })
+    )
   }
- 
+
   render(){
-    const {list} = this.state;
+    const {pokedex} = this.state;
     return(
       <div>
         <ul>
-          {list.map(item => {
+          {pokedex.map(item => {
             return(
               <div key={item.id}>
+                <img src={`${item.sprites.front_default}`} />
+                <p>ID / {item.id}</p>
                 <li>{item.name}</li>
-                <p>{item.url}</p>
+                <ul>
+                  {item.abilities.map(obj =>{
+                    return(
+                      <div>
+                        <li>{obj.ability.name}</li>
+                      </div>
+                    )
+                  })}
+                </ul>
               </div>
             );
           })}
