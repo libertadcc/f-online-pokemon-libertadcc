@@ -5,7 +5,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state= {
-      list : []
+      list: [],
+      nuevo: []
     }
     this.getPokemon = this.getPokemon.bind(this);
   }
@@ -18,10 +19,20 @@ class App extends Component {
     fetch('http://pokeapi.salestock.net/api/v2/pokemon/?limit=25')
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          list: data.results
+        const newData = data.results.map((item, index) => {
+          return {...item, id: index + 1}
         })
-      })
+        this.setState({
+          list: newData
+        })
+        return fetch('http://pokeapi.salestock.net/api/v2/pokemon/?limit=25')
+        })
+          .then(response => response.json())
+          .then(datos => {
+            this.setState({
+              nuevo: datos.results
+            })
+            console.log(datos.results)})
   }
  
   render(){
@@ -31,7 +42,10 @@ class App extends Component {
         <ul>
           {list.map(item => {
             return(
-              <li>{item.name}</li>
+              <div key={item.id}>
+                <li>{item.name}</li>
+                <p>{item.url}</p>
+              </div>
             );
           })}
         </ul>
