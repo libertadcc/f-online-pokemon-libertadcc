@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PokeList from './List/PokeList';
 import Filter from './Filter/Filter';
 import './App.scss';
+import { pokemon } from './services/pokemon';
 
 class App extends Component {
   constructor(props){
@@ -19,14 +20,10 @@ class App extends Component {
   }
 
   getPokemon(){
-    const ENDPOINT = 'https://pokeapi.co/api/v2/pokemon?limit=25';
-    return (
-      fetch(ENDPOINT)
-      .then(response => response.json())
-      .then(data => {
-        for(let i = 0; i < data.results.length; i++){
-          fetch(data.results[i].url)
-          .then(res => res.json())
+    pokemon().then(data => {
+      for(let i = 0; i < data.results.length; i++){
+        fetch(data.results[i].url)
+        .then(res => res.json())
           .then(onePokemon => {
             this.setState((prevState, props) => {
               return {
@@ -39,7 +36,6 @@ class App extends Component {
           })
         }
       })
-    )
   }
 
   filterPok(event) {
