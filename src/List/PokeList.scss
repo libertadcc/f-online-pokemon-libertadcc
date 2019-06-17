@@ -5,8 +5,13 @@
   padding: 0;
   background: rgb(223, 223, 223);
   margin: 10px 0;
-
+  border: 1px solid rgba(216, 210, 210, 0.858);
   @media all and (min-width: $bp-tablet) {
     margin: 0;
+  }
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 32px -6px rgba(0,0,0,0.75);
+
   }
 }
