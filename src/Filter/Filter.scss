@@ -1,0 +1,20 @@
+@import '../scss/variables';
+
+.input {
+  text-align: center;
+  font-size: 16px;
+  height: 30px;
+  margin: 20px 0;
+  background-color: rgb(255, 253, 235);
+  color: grey;
+  border: none;
+  box-shadow: 0px 0px 32px -6px rgba(0,0,0,0.75);
+  min-width: 230px;
+  align-content: center;
+  @media all and (min-width: $bp-tablet) {
+    width: 500px;
+  }
+  @media all and (min-width: $bp-desktop) {
+    width: 800px;
+  }
+}

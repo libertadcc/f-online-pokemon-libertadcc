@@ -45,14 +45,13 @@ class App extends Component {
   filterPok(event) {
     const inputValue = event.currentTarget.value;
     this.setState({
-      filterValue: inputValue
+      filterValue: inputValue.toLowerCase()
     })
   }
 
   render(){
     const {pokedex, filterValue} = this.state;
     return(
-      <React.Fragment>
       <div className="page">
         <header>
           <h1 className="header__title">Pokédex</h1>
@@ -61,7 +60,7 @@ class App extends Component {
           <Filter filterPok={this.filterPok}/>
           <ul className="page__pokedex">
             {pokedex
-            .filter(obj => obj.name.includes(filterValue))
+            .filter(obj => obj.name.toLowerCase().includes(filterValue))
             .map(item => {
               return(
                 <PokeList item={item} />
@@ -70,7 +69,6 @@ class App extends Component {
           </ul>
         </main>
       </div>
-      </React.Fragment>
     );
   }
 }

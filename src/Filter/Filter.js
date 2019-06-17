@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Filter.scss';
 
 class Filter extends Component {
   render() {
@@ -7,7 +8,7 @@ class Filter extends Component {
       <input 
         className="input"
         type="text"
-        placeholder="Filtra pokemons por nombre o habilidad"
+        placeholder="Filtra pokemons por nombre"
         onChange={filterPok}>
       </input>
     );
