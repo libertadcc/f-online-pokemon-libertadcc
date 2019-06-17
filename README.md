@@ -17,6 +17,29 @@ Here you can find a new version. In this first version, you can find the first 2
 - [React](https://reactjs.org/) - Framework de JavaScript library
 - [SASS](https://sass-lang.com/) - CSS preprocessor
 
+## ⛩ Structure
+```
+'-src
+  '-App
+    '-App.js
+    '-App.scss
+  '-Card
+    '-Card.js
+    '-Card.scss
+  '-Filter
+    '-Filter.js
+    '-Filter.scss
+  '-List
+    '-List.js
+    '-List.scss
+  '-scss
+    '-_variables.scss
+  '-services
+    '-pokemon.js
+  '-index.js
+  '-index.css
+```
+
 ## 🤜🤛 Contributing
 All suggestions are welcome, please open an issue.
 

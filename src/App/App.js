@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import PokeList from './List/PokeList';
-import Filter from './Filter/Filter';
+import PokeList from '../List/PokeList';
+import Filter from '../Filter/Filter';
 import './App.scss';
-import { pokemon } from './services/pokemon';
+import { pokemon } from '../services/pokemon';
 
 class App extends Component {
   constructor(props){
