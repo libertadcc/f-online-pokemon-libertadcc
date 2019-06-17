@@ -1,14 +1,17 @@
 import React, {Component} from 'react';
 import PokeList from './List/PokeList';
+import Filter from './Filter/Filter';
 import './App.scss';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state= {
-      pokedex: []
+      pokedex: [],
+      filterValue: ''
     }
     this.getPokemon = this.getPokemon.bind(this);
+    this.filterPok = this.filterPok.bind(this);
   }
 
   componentDidMount(){
@@ -39,19 +42,35 @@ class App extends Component {
     )
   }
 
+  filterPok(event) {
+    const inputValue = event.currentTarget.value;
+    this.setState({
+      filterValue: inputValue
+    })
+  }
+
   render(){
-    const {pokedex} = this.state;
+    const {pokedex, filterValue} = this.state;
     return(
+      <React.Fragment>
       <div className="page">
-        <h1 className="page__title">Pokédex</h1>
-        <ul className="page__pokedex">
-          {pokedex.map(item => {
-            return(
-              <PokeList item={item} />
-            );
-          })}
-        </ul>
+        <header>
+          <h1 className="header__title">Pokédex</h1>
+        </header>
+        <main>
+          <Filter filterPok={this.filterPok}/>
+          <ul className="page__pokedex">
+            {pokedex
+            .filter(obj => obj.name.includes(filterValue))
+            .map(item => {
+              return(
+                <PokeList item={item} />
+              );
+            })}
+          </ul>
+        </main>
       </div>
+      </React.Fragment>
     );
   }
 }

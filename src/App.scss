@@ -7,15 +7,58 @@ body {
 }
 
 .page {
-  padding: 10px 30px;
+  padding: 15px 60px 30px;
   text-align: center;
   background-color: $coloryellow;
+  min-height: 100vh;
+  &:before {
+    content: '';
+    width: 150px;
+    height: 150px;
+    background: red;
+    border-radius: 50%;
+    position: fixed;
+    bottom: -75px;
+    left: -75px;
+  }
+  &:after {
+    content: '';
+    width: 150px;
+    height: 150px;
+    background: red;
+    border-radius: 50%;
+    position: fixed;
+    bottom: -75px;
+    right: -75px;
+  }
 }
 
-.page__title {
+.header__title {
   margin: 0;
   padding: 30px;
   font-size: 40px;
+  &:before {
+    content: '';
+    padding: 0;
+    margin:0;
+    width: 0;
+    height: 0;
+    border-top: 75px solid black;
+    border-right: 75px solid transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  &:after{
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 75px solid black;
+    border-left: 75px solid transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
 }
 
 .page__pokedex {

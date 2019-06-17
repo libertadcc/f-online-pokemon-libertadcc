@@ -4,10 +4,10 @@ import './PokeList.scss';
 
 class PokeList extends Component {
   render() {
-    const {item} = this.props;
+    const {item, filterValue} = this.props;
     return(
       <li className="card" key={item.id}>
-        <Card item={item} />
+        <Card item={item} filterValue={filterValue}/>
       </li>
     );
   }
