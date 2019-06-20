@@ -13,28 +13,63 @@ class App extends Component {
     }
     this.getPokemon = this.getPokemon.bind(this);
     this.filterPok = this.filterPok.bind(this);
+    this.promisePokemon = this.promisePokemon.bind(this);
   }
 
   componentDidMount(){
     this.getPokemon();
   }
 
+  promisePokemon(url){
+    console.log(`{request: ${url}`)
+    return (fetch(url)
+    
+    .then(res => res.json()))
+    .then(pokemon => {
+      console.log(`{success: ${url}`)
+      return({
+      id: pokemon.id,
+      name: pokemon.name,
+      imagen: pokemon.sprites.front_default,
+      abilities: pokemon.abilities
+        
+    })})
+    
+  }
+
   getPokemon(){
+    const promisePokemon = this.promisePokemon;
     pokemon().then(data => {
+      let promises = [];
       for(let i = 0; i < data.results.length; i++){
-        fetch(data.results[i].url)
-        .then(res => res.json())
-          .then(onePokemon => {
+        promises.push(promisePokemon(data.results[i].url));
+        
+      }
+      Promise.all(promises)
+        .then(responses => {
+          console.log(responses)
+          this.setState({
+            pokedex: responses
+
+          })
+          });
+          /*.then(onePokemon => {
+            console.log(`{success: ${data.results[i].url}`)
             this.setState((prevState, props) => {
               return {
                 pokedex: [
                   ...prevState.pokedex,
-                  onePokemon
+                  {id: onePokemon.id,
+                  name: onePokemon.name,
+                  imagen: onePokemon.sprites.front_default,
+                  abilities: onePokemon.abilities
+                  }
+                  
                 ]
               }
-            })
-          })
-        }
+            
+          })*/
+          console.log(promises)
       })
   }
 
@@ -46,6 +81,7 @@ class App extends Component {
   }
 
   render(){
+    console.log('render')
     const {pokedex, filterValue} = this.state;
     return(
       <div className="page">
@@ -59,7 +95,7 @@ class App extends Component {
             .filter(obj => obj.name.toLowerCase().includes(filterValue))
             .map(item => {
               return(
-                <PokeList item={item} />
+                <PokeList key={item.id} item={item} />
               );
             })}
           </ul>

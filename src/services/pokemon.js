@@ -1,5 +1,5 @@
-const ENDPOINT = 'https://pokeapi.co/api/v2/pokemon?limit=25';
+const ENDPOINT = 'https://pokeapi.co/api/v2/pokemon';
 
-const pokemon = () => 
-  fetch(ENDPOINT).then(response => response.json());
+const pokemon = (limit = 25) => 
+  fetch(`${ENDPOINT}?limit=${limit}`).then(response => response.json());
 export { pokemon };
