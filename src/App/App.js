@@ -34,7 +34,7 @@ class App extends Component {
 
   getPokemon(){
     const promisePokemon = this.promisePokemon;
-    pokemon().then(data => {
+    pokemon(25).then(data => {
       let promises = [];
       for(let i = 0; i < data.results.length; i++){
         promises.push(promisePokemon(data.results[i].url));
@@ -62,16 +62,11 @@ class App extends Component {
           <h1 className="header__title">Pokédex</h1>
         </header>
         <main>
-          <Filter filterPok={this.filterPok}/>
-          <ul className="page__pokedex">
-            {pokedex
-            .filter(obj => obj.name.toLowerCase().includes(filterValue))
-            .map(item => {
-              return(
-                <PokeList key={item.id} item={item} />
-              );
-            })}
-          </ul>
+          <Filter 
+            filterPok={this.filterPok}/>
+          <PokeList 
+            pokedex={pokedex}
+            filterValue={filterValue} />
         </main>
       </div>
     );

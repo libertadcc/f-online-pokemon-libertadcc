@@ -4,11 +4,20 @@ import './PokeList.scss';
 
 class PokeList extends Component {
   render() {
-    const {item, filterValue} = this.props;
+    const {pokedex, filterValue} = this.props;
     return(
-      <li className="card" key={item.id}>
-        <Card item={item} filterValue={filterValue}/>
-      </li>
+      <ul className="page__pokedex">
+        {pokedex
+          .filter(obj => obj.name.toLowerCase().includes(filterValue))
+          .map(item => {
+          return(
+            <li className="card">
+              <Card item={item} filterValue={filterValue}/>
+            </li>
+          );
+        })}
+      </ul>
+      
     );
   }
 }
