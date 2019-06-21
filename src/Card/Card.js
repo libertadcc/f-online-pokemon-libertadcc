@@ -12,12 +12,12 @@ class Card extends Component {
         <div className="pokemon__info">
           <h2 className="pokemon__name">{item.name}</h2>
           <ul className="pokemon__abilities">
-            {item.abilities.map((obj, index) => {
+            {item.types.map((obj, index) => {
             return (
               <li 
                 className="pokemon__abilities--name" 
                 key={index}>
-                  {obj.ability.name}
+                  {obj.type.name}
               </li>
             )})}
           </ul>

@@ -21,20 +21,15 @@ class App extends Component {
   }
 
   promisePokemon(url){
-    console.log(`{request: ${url}`)
     return (fetch(url)
-    
     .then(res => res.json()))
     .then(pokemon => {
-      console.log(`{success: ${url}`)
       return({
       id: pokemon.id,
       name: pokemon.name,
       imagen: pokemon.sprites.front_default,
-      abilities: pokemon.abilities
-        
+      types: pokemon.types
     })})
-    
   }
 
   getPokemon(){
@@ -43,33 +38,12 @@ class App extends Component {
       let promises = [];
       for(let i = 0; i < data.results.length; i++){
         promises.push(promisePokemon(data.results[i].url));
-        
       }
       Promise.all(promises)
         .then(responses => {
-          console.log(responses)
           this.setState({
             pokedex: responses
-
-          })
-          });
-          /*.then(onePokemon => {
-            console.log(`{success: ${data.results[i].url}`)
-            this.setState((prevState, props) => {
-              return {
-                pokedex: [
-                  ...prevState.pokedex,
-                  {id: onePokemon.id,
-                  name: onePokemon.name,
-                  imagen: onePokemon.sprites.front_default,
-                  abilities: onePokemon.abilities
-                  }
-                  
-                ]
-              }
-            
-          })*/
-          console.log(promises)
+          })});
       })
   }
 
@@ -81,7 +55,6 @@ class App extends Component {
   }
 
   render(){
-    console.log('render')
     const {pokedex, filterValue} = this.state;
     return(
       <div className="page">
