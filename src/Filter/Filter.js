@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Filter.scss';
+//Quizás habría que meter aquí la función de filtrado
+//Pasar a función lo que no tenga estado
 
 class Filter extends Component {
   render() {
