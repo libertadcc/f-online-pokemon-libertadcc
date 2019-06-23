@@ -34,9 +34,10 @@ class PokeList extends Component {
     const promisePokemon = this.promisePokemon;
     pokemon(25).then(data => {
       let promises = [];
-      for(let i = 0; i < data.results.length; i++){
-        promises.push(promisePokemon(data.results[i].url));
-      }
+      data.results.map(item => {
+        promises.push(promisePokemon(item.url))
+      })
+  
       Promise.all(promises)
         .then(responses => {
           this.setState({
