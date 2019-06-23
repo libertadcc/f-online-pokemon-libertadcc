@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Home from '../Home/Home';
-
+import Detail from '../Detail/Detail';
 import './App.scss';
-
 
 class App extends Component {
   constructor(props){
@@ -29,17 +28,16 @@ class App extends Component {
           <h1 className="header__title">Pokédex</h1>
         </header>
         <Switch>
-            <Route exact path="/" 
+          <Route exact path="/" 
             component={Home} 
             filterPok={this.filterPok}
             filterValue={filterValue}/>
-            {/* <Route path="/about" component={About} /> */}
-          </Switch>
-        {/* <main>
-          <Filter 
-            filterPok={this.filterPok}/>
-          <PokeList filterValue={filterValue}/>
-        </main> */}
+          <Route path="/:child" render={(parameters) => 
+              <Detail
+                parameters={parameters}/>
+            }
+          />
+        </Switch>
       </div>
     );
   }

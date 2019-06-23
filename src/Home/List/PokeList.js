@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Card from '../../Card/Card';
+import Card from './Card/Card';
 import './PokeList.scss';
 import { showPokemon } from '../../services/pokemon';
 
@@ -24,7 +24,6 @@ class PokeList extends Component {
     return (fetch(url)
     .then(res => res.json()))
     .then(pokemon => {
-      console.log('pet')
       return({
       id: pokemon.id,
       name: pokemon.name,
@@ -90,9 +89,7 @@ class PokeList extends Component {
           .map(item => {
           return(
             <li key={item.id} className="card">
-              console.log(item);
-              <Card item={item} 
-              />
+              <Card item={item} />
             </li>
           );
         })}
