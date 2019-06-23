@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Detail extends React.Component {
   componentWillUnmount(){
@@ -13,6 +14,11 @@ class Detail extends React.Component {
       <React.Fragment>
       {console.log(selected)}
       <p>{selected.name}</p>
+      <Link to="/">
+        <button className="btn__back">
+          Volver
+        </button>
+      </Link>
       </React.Fragment>
     );
   }
