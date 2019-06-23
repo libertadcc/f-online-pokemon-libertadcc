@@ -1,18 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Filter.scss';
-//Quizás habría que meter aquí la función de filtrado
-//Pasar a función lo que no tenga estado
 
-function Filter ({filterPok}) {
+function Filter ({filterPokemon}){
   return(
     <input 
       className="input"
       type="text"
       placeholder="Filtra pokemons por nombre"
-      onChange={filterPok}>
+      onChange={filterPokemon}>
     </input>
   );
 }
-
 
 export default Filter;

@@ -2,11 +2,14 @@ import React from 'react';
 import PokeList from '../Home/List/PokeList';
 import Filter from '../Home/Filter/Filter';
 
-function Home ({filterPok, filterValue}) {
+function Home ({filterPokemon, filterValue, pokedex}) {
   return (
     <React.Fragment>
-      <Filter filterPok={filterPok}/>
-      <PokeList filterValue={filterValue}/>
+      <Filter filterPokemon={filterPokemon}/>
+      <PokeList
+        pokedex={pokedex} 
+        filterValue={filterValue}
+      />
     </React.Fragment>
   );
 }
