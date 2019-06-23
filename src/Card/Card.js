@@ -3,7 +3,6 @@ import './Card.scss';
 
 class Card extends Component {
   render() {
-    console.log('render card', this.props.item)
     const {item} = this.props;
     return(
       <Fragment>

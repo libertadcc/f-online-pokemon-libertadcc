@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Card from '../Card/Card';
 import './PokeList.scss';
-import { pokemon } from '../services/pokemon';
+import { showPokemon } from '../services/pokemon';
 
 class PokeList extends Component {
   constructor(props){
@@ -11,10 +11,12 @@ class PokeList extends Component {
     }
     this.getPokemon = this.getPokemon.bind(this);
     this.promisePokemon = this.promisePokemon.bind(this);
+    //this.promiseEvolution = this.promiseEvolution.bind(this);
   }
 
   componentDidMount(){
     this.getPokemon();
+    //this.promiseEvolution();
   }
 
   //sacar el fetch fuera, a un componente. Pero no sé si promisePoemon o getPokemon
@@ -30,14 +32,39 @@ class PokeList extends Component {
     })})
   }
 
+  // promiseEvolution(url){
+  //   return (fetch(url)
+  //   .then(resp => resp.json()))
+  //   .then(evolPok => {
+  //     console.log('promiseEvolution', evolPok)
+  //   })
+  // }
+
+  // getEvolution(){
+  //   const evolution = this.promiseEvolution;
+  //   fetch('http://pokeapi.salestock.net/api/v2/evolution-trigger/1/')
+  //   .then(resp => resp.json())
+  //   .then(datos => {
+  //     let holo = []
+  //     datos.pokemon_species.map(obj =>{
+  //       console.log('evo', obj.url);
+  //       holo.push(evolution(obj.url))
+  //     })
+  //     Promise.all(holo).then(rest => {
+  //       this.setState({
+  //         evolution: rest
+  //       })
+  //     })
+  //   })
+  // }
+
   getPokemon(){
     const promisePokemon = this.promisePokemon;
-    pokemon(25).then(data => {
+    showPokemon(25).then(data => {
       let promises = [];
       data.results.map(item => {
         promises.push(promisePokemon(item.url))
       })
-  
       Promise.all(promises)
         .then(responses => {
           this.setState({
@@ -46,6 +73,7 @@ class PokeList extends Component {
         });
     })
   }
+
   render() {
     const {pokedex} = this.state;
     const {filterValue} = this.props;
@@ -55,7 +83,7 @@ class PokeList extends Component {
           .filter(obj => obj.name.toLowerCase().includes(filterValue))
           .map(item => {
           return(
-            <li className="card">
+            <li key={item.id} className="card">
               <Card item={item} 
               />
             </li>
