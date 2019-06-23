@@ -11,11 +11,11 @@ class Card extends Component {
         <p className="card__id">ID/ {item.id}</p>
         <div className="pokemon__info">
           <h2 className="pokemon__name">{item.name}</h2>
-          <ul className="pokemon__abilities">
+          <ul className="pokemon__types">
             {item.types.map((obj, index) => {
             return (
               <li 
-                className="pokemon__abilities--name" 
+                className="pokemon__types--name" 
                 key={index}>
                   {obj.type.name}
               </li>

@@ -1,5 +1,25 @@
 @import '../scss/variables';
 
+.page__pokedex {
+  display: flex;
+  flex-direction: column;
+  padding: 0;  
+  max-width: 350px;
+  margin: 0 auto;
+  @media all and (min-width: $bp-tablet) {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: auto;
+    grid-gap: 15px;
+    max-width: none;
+  }
+  
+  @media all and (min-width: $bp-desktop) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 25px;
+    max-width: 1200px;
+  }
+}
 .card {
   list-style: none;
   padding: 0;
