@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Card from '../Card/Card';
+import Card from '../../Card/Card';
 import './PokeList.scss';
-import { showPokemon } from '../services/pokemon';
+import { showPokemon } from '../../services/pokemon';
 
 class PokeList extends Component {
   constructor(props){
@@ -24,6 +24,7 @@ class PokeList extends Component {
     return (fetch(url)
     .then(res => res.json()))
     .then(pokemon => {
+      console.log('pet')
       return({
       id: pokemon.id,
       name: pokemon.name,
@@ -77,13 +78,19 @@ class PokeList extends Component {
   render() {
     const {pokedex} = this.state;
     const {filterValue} = this.props;
+    console.log('hola')
     return(
       <ul className="page__pokedex">
         {pokedex
-          .filter(obj => obj.name.toLowerCase().includes(filterValue))
+          // .filter(obj => {
+          //   obj.name.toLowerCase().includes(filterValue)
+          //   console.log('obj',obj)
+          // }
+          // )
           .map(item => {
           return(
             <li key={item.id} className="card">
+              console.log(item);
               <Card item={item} 
               />
             </li>

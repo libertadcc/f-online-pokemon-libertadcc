@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import PokeList from '../List/PokeList';
-import Filter from '../Filter/Filter';
+import { Route, Switch } from 'react-router-dom';
+import Home from '../Home/Home';
+
 import './App.scss';
 
 
@@ -27,11 +28,18 @@ class App extends Component {
         <header>
           <h1 className="header__title">Pokédex</h1>
         </header>
-        <main>
+        <Switch>
+            <Route exact path="/" 
+            component={Home} 
+            filterPok={this.filterPok}
+            filterValue={filterValue}/>
+            {/* <Route path="/about" component={About} /> */}
+          </Switch>
+        {/* <main>
           <Filter 
             filterPok={this.filterPok}/>
           <PokeList filterValue={filterValue}/>
-        </main>
+        </main> */}
       </div>
     );
   }
