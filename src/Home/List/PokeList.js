@@ -9,12 +9,12 @@ function PokeList ({filterValue, pokedex}) {
       {pokedex
       .filter(obj => obj.name.toLowerCase().includes(filterValue))
       .map(item => {
-          return(
-          <Link className="card__link" key={item.id} to={`/detail/${item.id}`}>
-            <li  className="card">
-              <Card item={item} />
-            </li>
-          </Link>
+        return(
+        <Link className="card__link" key={item.id} to={`/detail/${item.id}`}>
+          <li  className="card">
+            <Card item={item} />
+          </li>
+        </Link>
         );
       })}
     </ul>

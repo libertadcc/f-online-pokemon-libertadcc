@@ -11,12 +11,13 @@ class App extends Component {
     super(props);
     this.state= {
       pokedex: [],
-      filterValue: ''
+      filterValue: '',
+      ey: {}
     }
     this.getPokemon = this.getPokemon.bind(this);
     this.promisePokemon = this.promisePokemon.bind(this);
     this.filterPokemon = this.filterPokemon.bind(this);
-    this.reset=this.reset.bind(this);
+    this.reset=this.reset.bind(this);  
   }
   componentDidMount(){
     this.getPokemon();
@@ -29,10 +30,39 @@ class App extends Component {
       return({
       id: pokemon.id,
       name: pokemon.name,
-      imagen: pokemon.sprites.front_default,
-      types: pokemon.types
+      image: pokemon.sprites.front_default,
+      imageBack: pokemon.sprites.back_default,
+      imageShiny: pokemon.sprites.front_shiny,
+      imageShinyBack: pokemon.sprites.back_shiny,
+      types: pokemon.types,
+      height: pokemon.height,
+      abilities: pokemon.abilities,
+      weight: pokemon.weight
     })})
   }
+
+  
+  // promiseEvolution(url){
+  //   return (fetch(url)
+  //   .then(resp => resp.json())
+  //   .then(info => {
+  //     console.log(info)
+  //   })
+  //   )
+  // }
+
+  // getEvol(){
+  //   const promiseEvolution = this.promiseEvolution;
+  //   showPokemon(25).then(datos =>{
+  //     let evolution=[];
+  //     datos.results.map(item => {
+      
+  //       return(
+  //         evolution.push(promiseEvolution(item.url))
+  //       ); 
+  //     })
+  //   })
+  // }
 
   getPokemon(){
     const promisePokemon = this.promisePokemon;
@@ -58,6 +88,24 @@ class App extends Component {
       filterValue: inputValue.toLowerCase()
     })
   }
+
+//   getEvolution(){
+//     fetch('https://pokeapi.co/api/v2/pokemon?limit=25')
+//     .then(resp => resp.json())
+//     .then(data => {
+//       data.results.map(itemPokemon=> {
+//         return fetch(itemPokemon.url)
+//         .then(res => res.json())
+//         .then(datos => {
+//           this.setState({
+//             ey: itemPokemon
+//           })
+//         })
+//     })
+//   })
+// }
+
+          
 
   reset(){
     this.setState({

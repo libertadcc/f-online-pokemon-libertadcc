@@ -1,0 +1,57 @@
+@import '../scss/variables';
+
+.detail__page {
+  padding: 15px 60px 30px;
+  text-align: center;
+  background-color: $coloryellow;
+  border: 2px solid black;
+  max-width: 750px;
+  margin: 0 auto;
+  border-radius: 5%;
+}
+
+.detail__name {
+  text-transform: capitalize;
+  font-size: 28px;
+}
+
+.image {
+  width: 180px;
+  @media all and (min-width: $bp-tablet){
+    margin-left: 20px;
+  }
+}
+//para hacer el hover, cambiar la img a div y poner background image
+.detail__types {
+  list-style: none; 
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.detail__abilities {
+  list-style: none; 
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.detail__characteristics {
+  display: flex;
+  flex-direction: column;
+  @media all and (min-width: $bp-tablet){
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}
+
+.height__weight {
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+}
+///////// to do
+.poison {
+  background-image: url(../images/posion.png);
+  background-size: cover;
+  width: 80px;
+  height: 80px;
+}

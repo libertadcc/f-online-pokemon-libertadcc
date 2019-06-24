@@ -4,7 +4,7 @@ import './Card.scss';
 function Card ({item}){
   return(
     <Fragment>
-      <img className="card__imagen" alt={`Imagen de ${item.name}`} src={`${item.imagen}`} />
+      <img className="card__imagen" alt={`Imagen de ${item.name}`} src={`${item.image}`} />
       <p className="card__id">ID/ {item.id}</p>
       <div className="pokemon__info">
         <h2 className="pokemon__name">{item.name}</h2>

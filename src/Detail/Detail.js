@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Detail.scss';
 
 class Detail extends React.Component {
   componentWillUnmount(){
@@ -12,13 +13,49 @@ class Detail extends React.Component {
     console.log(selected);
     return(
       <React.Fragment>
-      {console.log(selected)}
-      <p>{selected.name}</p>
-      <Link to="/">
-        <button className="btn__back">
-          Volver
-        </button>
-      </Link>
+        <div className="detail__page">
+          <h2 className="detail__name">{selected.name}</h2>
+          <img className="image front__default" alt={`Imagen de ${selected.name}`} src={`${selected.image}`}/>
+          <img className="image shiny" alt={`Imagen de ${selected.name} hembra`} src={`${selected.imageShiny}`}/>
+          <h3 className="detail__characteristics--title">Características</h3>
+          <div className="detail__characteristics">
+            <div>
+              <h4>Tipos: </h4>
+              <ul className="detail__types">{selected.types.map((item, index) => {
+              return(
+                <li className="detail__type" key={index}>
+                  {item.type.name}
+                  {/* <div className={`type__img ${item.type.name === 'poison' ? 'poison'
+                  : ''}`}>
+                  </div> */}
+                </li>
+                );
+              })}
+              </ul>
+            </div>
+            <div>
+              <h4>Habilidades: </h4>
+              <ul className="detail__abilities">{selected.abilities.map((obj, index) => {
+                return(
+                  <li className="detail__ability" key={index}>
+                    {obj.ability.name}
+                  </li>
+                );
+              })}
+              </ul>
+            </div>
+            <div className="height__weight">
+              <h4>Datos corporales: </h4>
+              <span>Altura: {selected.height / 10}m</span>
+              <span>Peso: {selected.weight / 10}kg</span>
+            </div>
+          </div>
+        </div>
+        <Link to="/">
+          <button className="btn__back">
+            Volver
+          </button>
+        </Link>
       </React.Fragment>
     );
   }
