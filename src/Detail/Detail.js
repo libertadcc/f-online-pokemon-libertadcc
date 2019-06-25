@@ -46,15 +46,18 @@ class Detail extends React.Component {
             </div>
             <div className="height__weight">
               <h4>Datos corporales: </h4>
-              <span>Altura: {selected.height / 10}m</span>
-              <span>Peso: {selected.weight / 10}kg</span>
+              <ul>
+                <li>Altura: {selected.height / 10}m</li>
+                <li>Peso: {selected.weight / 10}kg</li>
+              </ul>
+              {/* <span>Altura: {selected.height / 10}m</span>
+              <span>Peso: {selected.weight / 10}kg</span> */}
             </div>
           </div>
         </div>
         <Link to="/">
-          <button className="btn__back">
-            Volver
-          </button>
+          <i class="arrow fas fa-chevron-circle-left">
+          </i>
         </Link>
       </React.Fragment>
     );

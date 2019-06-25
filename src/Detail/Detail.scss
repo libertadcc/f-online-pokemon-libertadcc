@@ -5,7 +5,7 @@
   text-align: center;
   background-color: $coloryellow;
   border: 2px solid black;
-  max-width: 750px;
+  max-width: 700px;
   margin: 0 auto;
   border-radius: 5%;
 }
@@ -13,6 +13,9 @@
 .detail__name {
   text-transform: capitalize;
   font-size: 28px;
+  @media all and (min-width: $bp-tablet){
+    font-size: 32px;
+  }
 }
 
 .image {
@@ -37,9 +40,12 @@
 .detail__characteristics {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
   @media all and (min-width: $bp-tablet){
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-content: center;
   }
 }
 
@@ -48,6 +54,28 @@
   flex-direction: column;
   justify-content: center;
 }
+@keyframes back{
+  0% {position: relative;
+      right: 0;
+      top: 0;}
+  50% {position: relative;
+      right: 10px;
+      top: 0;}
+  100% {position: relative;
+      right: 20px;
+      top: 0;}
+}
+
+.arrow{
+  transform: scale(2);
+  margin: 20px;
+  color: black;
+  animation: back 1.5s infinite;
+  &:hover{
+    color: rgb(26, 121, 172);
+  }
+}
+
 ///////// to do
 .poison {
   background-image: url(../images/posion.png);

@@ -12,15 +12,18 @@ class App extends Component {
     this.state= {
       pokedex: [],
       filterValue: '',
-      ey: {}
+      ey: []
     }
     this.getPokemon = this.getPokemon.bind(this);
     this.promisePokemon = this.promisePokemon.bind(this);
     this.filterPokemon = this.filterPokemon.bind(this);
     this.reset=this.reset.bind(this);  
+
+    this.getEvolution = this.getEvolution.bind(this);
   }
   componentDidMount(){
     this.getPokemon();
+    this.getEvolution();
   }
 
   promisePokemon(url){
@@ -41,29 +44,6 @@ class App extends Component {
     })})
   }
 
-  
-  // promiseEvolution(url){
-  //   return (fetch(url)
-  //   .then(resp => resp.json())
-  //   .then(info => {
-  //     console.log(info)
-  //   })
-  //   )
-  // }
-
-  // getEvol(){
-  //   const promiseEvolution = this.promiseEvolution;
-  //   showPokemon(25).then(datos =>{
-  //     let evolution=[];
-  //     datos.results.map(item => {
-      
-  //       return(
-  //         evolution.push(promiseEvolution(item.url))
-  //       ); 
-  //     })
-  //   })
-  // }
-
   getPokemon(){
     const promisePokemon = this.promisePokemon;
     showPokemon(25).then(data => {
@@ -82,30 +62,41 @@ class App extends Component {
     })
   }
   
+  fetchEvolution(id){
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`)
+    .then(res => res.json())
+    .then(data => {
+      console.log('data', data);
+    })
+  }
+  getEvolution(){
+    showPokemon(25).then( data =>{
+      let hola = [];
+      data.results.map(item => {
+        return (fetch(item.url)
+        .then(resp=>resp.json())
+        .then(data => {
+          hola.push(data);
+          hola.map(obj => {
+            return (fetch(obj.species.url).then(res => res.json())
+            .then(evolData => {
+              const evolution = [];
+              const fromPokemon = evolData.evolves_from_species;
+              return console.log(fromPokemon)
+            })
+            )
+          })
+          
+        }))
+      })})}
+
   filterPokemon(event) {
     const inputValue = event.currentTarget.value;
     this.setState({
       filterValue: inputValue.toLowerCase()
     })
   }
-
-//   getEvolution(){
-//     fetch('https://pokeapi.co/api/v2/pokemon?limit=25')
-//     .then(resp => resp.json())
-//     .then(data => {
-//       data.results.map(itemPokemon=> {
-//         return fetch(itemPokemon.url)
-//         .then(res => res.json())
-//         .then(datos => {
-//           this.setState({
-//             ey: itemPokemon
-//           })
-//         })
-//     })
-//   })
-// }
-
-          
+   
 
   reset(){
     this.setState({
