@@ -10,7 +10,6 @@ class Detail extends React.Component {
     const {pokedex} = this.props;
     const pokemonId = parseInt(this.props.parameters.match.params.child);
     const selected = pokedex.find(obj => obj.id === pokemonId);
-    console.log(selected);
     return(
       <React.Fragment>
         <div className="detail__page">
@@ -25,9 +24,6 @@ class Detail extends React.Component {
               return(
                 <li className="detail__type" key={index}>
                   {item.type.name}
-                  {/* <div className={`type__img ${item.type.name === 'poison' ? 'poison'
-                  : ''}`}>
-                  </div> */}
                 </li>
                 );
               })}
@@ -50,13 +46,11 @@ class Detail extends React.Component {
                 <li>Altura: {selected.height / 10}m</li>
                 <li>Peso: {selected.weight / 10}kg</li>
               </ul>
-              {/* <span>Altura: {selected.height / 10}m</span>
-              <span>Peso: {selected.weight / 10}kg</span> */}
             </div>
           </div>
         </div>
         <Link to="/">
-          <i class="arrow fas fa-chevron-circle-left">
+          <i className="arrow fas fa-chevron-circle-left">
           </i>
         </Link>
       </React.Fragment>

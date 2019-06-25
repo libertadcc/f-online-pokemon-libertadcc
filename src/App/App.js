@@ -81,8 +81,10 @@ class App extends Component {
             return (fetch(obj.species.url).then(res => res.json())
             .then(evolData => {
               const evolution = [];
-              const fromPokemon = evolData.evolves_from_species;
-              return console.log(fromPokemon)
+              evolution.push(evolData.evolves_from_species)
+              this.setState({
+                ey: evolution
+              })
             })
             )
           })
